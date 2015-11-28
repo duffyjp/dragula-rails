@@ -586,14 +586,11 @@ function getRectHeight (rect) { return rect.height || (rect.bottom - rect.top); 
 function isInput (el) { return el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT'; }
 
 function nextEl (el) {
-  return el.nextElementSibling || manually();
-  function manually () {
-    var sibling = el;
-    do {
-      sibling = sibling.nextSibling;
-    } while (sibling && sibling.nodeType !== 1);
-    return sibling;
-  }
+  var sibling = el;
+  do {
+    sibling = sibling.nextSibling;
+  } while (sibling && sibling.nodeType == el.nodeType);
+  return sibling;
 }
 
 function getEventHost (e) {
