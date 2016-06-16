@@ -605,26 +605,12 @@
     }
 
     function nextEl (el) {
-      return el.nextElementSibling || manually();
-      function manually () {
-        var sibling = el;
-        do {
-          sibling = sibling.nextSibling;
-        } while (sibling && sibling.nodeType == el.nodeType);
-        return sibling;
-      }
+      var sibling = el;
+      do {
+        sibling = sibling.nextSibling;
+      } while (sibling && sibling.nodeType != el.nodeType);
+      return sibling;
     }
-
-    // Old version
-    //function nextEl (el) {
-    //  var sibling = el;
-    //  do {
-    //    sibling = sibling.nextSibling;
-    //  } while (sibling && sibling.nodeType == el.nodeType);
-    //  return sibling;
-    //}
-
-
 
     function getEventHost (e) {
       // on touchend event, we have to use `e.changedTouches`
